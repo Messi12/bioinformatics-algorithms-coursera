@@ -5,4 +5,4 @@ Scripts for functions common to multiple programming assignments for Bioinformat
 
 from Protein_Dictionaries import ProteinDictDNA, ProteinDictRNA, ProteinWeightDict
 from DNA_RNA_Operations import DNA_to_RNA, RNA_to_DNA, ReverseComplementDNA, ReverseComplementRNA, HammingDistance
-from scoring_matrices import BLOSUM62
+from scoring_matrices import BLOSUM62, PAM250
