@@ -12,7 +12,7 @@ Stepic Textbook Website: [https://beta.stepic.org/Bioinformatics-Algorithms-2/](
 ---
 ***Top Level Directory***
 
-The top level directory contains problem solutions.  The problems are organized by their assignment number and ID.  
+The top level directory contains problem solutions.  The problems are organized by the week which they are assigned, and their position on the given weeks assignment.  Specifically, Assignment_XXY denotes week XX, problem Y. 
 
 ***Scripts Directory***
 
