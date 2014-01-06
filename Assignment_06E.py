@@ -67,10 +67,13 @@ if __name__ == '__main__':
     with open('data/stepic_6e.txt') as input_data:
         word1, word2 = [line.strip() for line in input_data.readlines()]
 
-    # Get the alignment.
-    alignment = global_alignment(word1, word2, BLOSUM62(), 5)
+    # # Get the alignment.
+    # alignment = global_alignment(word1, word2, BLOSUM62(), 5)
 
-    # Print and save the answer.
-    print '\n'.join(alignment)
-    with open('output/Assignment_06E.txt', 'w') as output_data:
-        output_data.write('\n'.join(alignment))
+    # # Print and save the answer.
+    # print '\n'.join(alignment)
+    # with open('output/Assignment_06E.txt', 'w') as output_data:
+    #     output_data.write('\n'.join(alignment))
+
+    import cProfile
+    cProfile.run('global_alignment(word1, word2, BLOSUM62(), 5)')
