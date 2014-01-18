@@ -9,27 +9,32 @@ Assignment #: 09
 Problem ID: E
 URL: https://stepic.org/Bioinformatics-Algorithms-2/Suffix-Trees-296/step/5
 '''
+from scripts import GeneralizedSuffixTree
 
 
-def main():
-    '''Solves problem Problem 9E.'''
-    from scripts import GeneralizedSuffixTree
-
-    # Read the input data.
-    with open('data/stepic_9e.txt') as input_data:
-        text = [line.strip() for line in input_data.readlines()]
-
+def longest_common_substring(string_list):
+    '''Returns the longest common substring among all strings in string_list.'''
     # Construct the generalized suffix tree for the input text.
-    gst = GeneralizedSuffixTree(text)
+    gst = GeneralizedSuffixTree(string_list)
 
     # Find all nodes that are traversed by all words in text, meaning that the substring up to that node is in all words in text.
-    candidate_nodes = filter(lambda i: len(gst.nodes[i].words) == len(text), xrange(len(gst.nodes)))
+    candidate_nodes = filter(lambda i: len(gst.nodes[i].words) == len(string_list), xrange(len(gst.nodes)))
 
     # Get the deepest node of from the candidate nodes, where depth corresponds to substring length.
     deepest_node = max(candidate_nodes, key=lambda i: gst.node_depth(i))
 
-    # Get the substring corresponding to a traversal up to the deepest node.
-    longest_shared_repeat = gst.word_up_to_node(deepest_node)
+    # Return the substring corresponding to a traversal up to the deepest node.
+    return gst.word_up_to_node(deepest_node)
+
+
+def main():
+    '''Reads, runs, and saves problem specific data.'''
+    # Read the input data.
+    with open('data/stepic_9e.txt') as input_data:
+        text = [line.strip() for line in input_data.readlines()]
+
+    # Get the longest shared repeat.
+    longest_shared_repeat = longest_common_substring(text)
 
     # Print and save the answer.
     print longest_shared_repeat
