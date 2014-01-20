@@ -146,6 +146,24 @@ class GeneralizedSuffixTree(object):
         return node_word
 
     def node_depth(self, node_num):
-        """Returns the length of the substring traversal up to the given node, discounting the out of alphabet character."""
-        node_word = self.word_up_to_node(node_num)
-        return len(node_word) - [0, 2]['$' in node_word]
+        """
+        Returns the length of the substring traversal up to the given node,
+        discounting the out of alphabet character, and without constructing the entire word.
+        """
+
+        # Trivially have depth zero if at the root.
+        if node_num == 0:
+            return 0
+
+        # The first edge (working backwards) is the only one that can have an out of alphabet character, so take extra precaution.
+        first_edge = self.edge_word(self.edges[self.nodes[node_num].parent, node_num])
+        depth = len(first_edge) if '$' not in first_edge else len(first_edge[:first_edge.index('$')])
+
+        # Move to the parent node and add the length of the next edge until we hit the root.
+        node_num = self.nodes[node_num].parent
+        while self.nodes[node_num].parent != -1:
+            # Prepend the substring associated with each edge until we hit the root of the generalized suffix tree.
+            depth += len(self.edge_word(self.edges[self.nodes[node_num].parent, node_num]))
+            node_num = self.nodes[node_num].parent
+
+        return depth
