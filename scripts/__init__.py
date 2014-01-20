@@ -7,3 +7,4 @@ from DNA_RNA_Operations import DNA_to_RNA, RNA_to_DNA, ReverseComplementDNA, Rev
 from generalized_suffix_tree import GeneralizedSuffixTree
 from Protein_Dictionaries import ProteinDictDNA, ProteinDictRNA, ProteinWeightDict
 from scoring_matrices import BLOSUM62, PAM250
+from trie import Trie
