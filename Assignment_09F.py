@@ -23,13 +23,13 @@ def shortest_nonshared_substring(string_list):
 
     # Filter out all nodes corresponding to the out of alphabet character unique to first word, as these are trivally only traveresed by the first word.
     # If the out of alphabet character is the only character on the edge, then its parent must be traversed by another word.
-    candidate_nodes = filter(lambda i: gst.edge_word(gst.edges[gst.nodes[i].parent,i]) != '$0', candidate_nodes)
+    candidate_nodes = filter(lambda i: gst.edge_substring(gst.edges[gst.nodes[i].parent,i]) != '$0', candidate_nodes)
 
     # To get the shortest substring, only take the first character of the last edge, hence the substring has length parent_length + 1.
     shortest = min(candidate_nodes, key=lambda i: gst.node_depth(gst.nodes[i].parent)+1)
 
     # Shortest nonshared substring is the substring up to the first character of the edge leading to the optimal node.
-    return gst.word_up_to_node(gst.nodes[shortest].parent) + gst.edge_word(gst.edges[gst.nodes[shortest].parent,shortest])[0]
+    return gst.node_substring(gst.nodes[shortest].parent) + gst.edge_substring(gst.edges[gst.nodes[shortest].parent,shortest])[0]
 
 
 def main():
