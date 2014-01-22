@@ -24,7 +24,7 @@ def longest_common_substring(string_list):
     deepest_node = max(candidate_nodes, key=lambda i: gst.node_depth(i))
 
     # Return the substring corresponding to a traversal up to the deepest node.
-    return gst.word_up_to_node(deepest_node)
+    return gst.node_substring(deepest_node)
 
 
 def main():
